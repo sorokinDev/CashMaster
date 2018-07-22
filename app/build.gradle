@@ -26,6 +26,7 @@ android {
 
 ext {
     appcompat_version = "27.1.1"
+    room_version = "1.1.1"
     lifecycle_version = "1.1.1"
     cicerone_version = "3.0.0"
     dagger_version = "2.16"
@@ -41,6 +42,11 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
     // LiveData
     implementation "android.arch.lifecycle:livedata:$lifecycle_version"
+
+    // Room
+    implementation "android.arch.persistence.room:runtime:$room_version"
+    kapt "android.arch.persistence.room:compiler:$room_version"
+
     // Cicerone
     implementation "ru.terrakok.cicerone:cicerone:$cicerone_version"
 
