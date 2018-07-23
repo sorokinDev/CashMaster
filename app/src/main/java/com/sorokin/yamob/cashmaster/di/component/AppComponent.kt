@@ -3,6 +3,7 @@ package com.sorokin.yamob.cashmaster.di.component
 import android.app.Application
 import com.sorokin.yamob.cashmaster.App
 import com.sorokin.yamob.cashmaster.di.module.AppModule
+import com.sorokin.yamob.cashmaster.di.module.RepositoryModule
 import com.sorokin.yamob.cashmaster.di.module.ViewModelModule
 import com.sorokin.yamob.cashmaster.di.module.ViewModule
 import dagger.BindsInstance
@@ -17,7 +18,8 @@ import javax.inject.Singleton
             AndroidSupportInjectionModule::class,
             AppModule::class,
             ViewModule::class,
-            ViewModelModule::class
+            ViewModelModule::class,
+            RepositoryModule::class
         ]
 )
 interface AppComponent: AndroidInjector<App> {

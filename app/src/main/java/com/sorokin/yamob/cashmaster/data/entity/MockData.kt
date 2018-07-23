@@ -15,10 +15,10 @@ object MockData{
     )
 
     val transactions = mutableListOf(
-            MoneyTransaction(500.0, "RUB", Date(), MoneyTransactionType.INCOMING),
-            MoneyTransaction(500.0, "RUB", Date(), MoneyTransactionType.INCOMING),
-            MoneyTransaction(500.0, "RUB", Date(), MoneyTransactionType.INCOMING),
-            MoneyTransaction(400.0, "RUB", Date(), MoneyTransactionType.EXPENSE)
+            MoneyTransaction(500.0, "RUB", Date(), MoneyTransaction.Type.INCOMING),
+            MoneyTransaction(500.0, "RUB", Date(), MoneyTransaction.Type.INCOMING),
+            MoneyTransaction(500.0, "RUB", Date(), MoneyTransaction.Type.INCOMING),
+            MoneyTransaction(400.0, "RUB", Date(), MoneyTransaction.Type.EXPENSE)
     )
 
     val wallet = Wallet(1100.0, "RUB")

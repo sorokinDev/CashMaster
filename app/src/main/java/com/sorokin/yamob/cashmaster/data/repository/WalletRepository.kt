@@ -2,14 +2,24 @@ package com.sorokin.yamob.cashmaster.data.repository
 
 import com.sorokin.yamob.cashmaster.data.entity.MockData
 import com.sorokin.yamob.cashmaster.data.entity.MoneyTransaction
-import com.sorokin.yamob.cashmaster.data.entity.MoneyTransactionType
 import com.sorokin.yamob.cashmaster.data.entity.Wallet
-import java.util.*
 import javax.inject.Inject
 
-class TransactionRepository @Inject constructor(
-        val exchangeRepository: ExchangeRepository
-) {
+class WalletRepository @Inject constructor(){
+
+    //region EXCHANGE
+    fun exchangeMoney(amount: Double, sourceCurrency: String, destinationCurrency: String): Double {
+        val exc = MockData.exchanges.firstOrNull {
+            (it.sourceCurrency == sourceCurrency && destinationCurrency == destinationCurrency) ||
+                    (it.destinationCurrency == sourceCurrency && it.sourceCurrency == destinationCurrency)
+        }
+
+        return if (exc != null) amount * if (exc.sourceCurrency == sourceCurrency) exc.rate else 1 / exc.rate
+        else amount
+    }
+    //endregion
+
+    //region TRANSACTIONS
     fun getAllTransactions(): List<MoneyTransaction> = MockData.transactions
     fun getLastTransactions(n: Int): List<MoneyTransaction> = MockData.transactions.takeLast(n).toList()
     fun getTransactionById(id: Int): MoneyTransaction? =
@@ -17,13 +27,13 @@ class TransactionRepository @Inject constructor(
 
     fun addTransaction(transaction: MoneyTransaction){
         val transEx = MoneyTransaction(
-                exchangeRepository.exchangeMoney(transaction.amount, transaction.currency, MockData.mainCurrency),
+                exchangeMoney(transaction.amount, transaction.currency, MockData.mainCurrency),
                 MockData.mainCurrency,
                 transaction.date,
                 transaction.type
         )
         MockData.wallet.money +=
-                if (transEx.type == MoneyTransactionType.INCOMING) transEx.amount
+                if (transEx.type == MoneyTransaction.Type.INCOMING) transEx.amount
                 else (-transEx.amount)
 
         MockData.transactions.add(transEx)
@@ -31,19 +41,22 @@ class TransactionRepository @Inject constructor(
 
     fun sumAllTransactions():Double =
             MockData.transactions.sumByDouble {
-                if (it.type == MoneyTransactionType.INCOMING) it.amount
+                if (it.type == MoneyTransaction.Type.INCOMING) it.amount
                 else -it.amount
             }
 
-    fun sumTransactionsByType(transactionType: MoneyTransactionType): Double =
+    fun sumTransactionsByType(transactionType: MoneyTransaction.Type): Double =
             MockData.transactions.sumByDouble {
                 if (it.type == transactionType) it.amount
                 else 0.0
             }
+    //endregion
 
+    //region WALLET
     fun getWallet() = MockData.wallet
     fun getWalletInCurrency(currency: String) = Wallet(
-            exchangeRepository.exchangeMoney(MockData.wallet.money, MockData.wallet.currency, currency),
+            exchangeMoney(MockData.wallet.money, MockData.wallet.currency, currency),
             currency
     )
+    //endregion
 }
