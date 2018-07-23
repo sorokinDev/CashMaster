@@ -11,7 +11,9 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.view.MenuItem
 import android.view.View
 import com.sorokin.yamob.cashmaster.R
+import com.sorokin.yamob.cashmaster.ui.about.AboutFragment
 import com.sorokin.yamob.cashmaster.ui.home.HomeFragment
+import com.sorokin.yamob.cashmaster.ui.settings.SettingsFragment
 import com.sorokin.yamob.cashmaster.ui.shared.SharedViewModel
 import com.sorokin.yamob.cashmaster.util.Screens
 import com.sorokin.yamob.cashmaster.util.observe
@@ -33,6 +35,8 @@ class MainActivity : BaseActivity<MainViewModel>(), NavigationView.OnNavigationI
     @Inject lateinit var navHolder: NavigatorHolder
 
     @Inject lateinit var homeFragment: HomeFragment
+    @Inject lateinit var settingsFragment: SettingsFragment
+    @Inject lateinit var aboutFragment: AboutFragment
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +45,7 @@ class MainActivity : BaseActivity<MainViewModel>(), NavigationView.OnNavigationI
         initView()
 
         initViewModel()
+
 
         if(savedInstanceState == null){
             nav_view.setCheckedItem(R.id.nav_home);
@@ -78,6 +83,9 @@ class MainActivity : BaseActivity<MainViewModel>(), NavigationView.OnNavigationI
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
         } else {
+            if(supportFragmentManager.backStackEntryCount == 1){
+                supportActionBar?.setDisplayHomeAsUpEnabled(false)
+            }
             super.onBackPressed()
         }
     }
@@ -88,7 +96,7 @@ class MainActivity : BaseActivity<MainViewModel>(), NavigationView.OnNavigationI
                 viewModel.router.newRootScreen(Screens.HOME)
             }
             R.id.nav_settings -> {
-                viewModel.router.newRootScreen(Screens.SETTINGS)
+                viewModel.router.navigateTo(Screens.SETTINGS)
             }
         }
 
@@ -113,7 +121,8 @@ class MainActivity : BaseActivity<MainViewModel>(), NavigationView.OnNavigationI
 
         override fun createFragment(screenKey: String?, data: Any?): Fragment?  = when(screenKey){
             Screens.HOME -> homeFragment
-            Screens.SETTINGS -> homeFragment
+            Screens.SETTINGS -> settingsFragment
+            Screens.ABOUT -> aboutFragment
             else -> homeFragment
         }
     }

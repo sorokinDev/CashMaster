@@ -9,8 +9,18 @@ import android.view.ViewGroup
 
 import com.sorokin.yamob.cashmaster.R
 import com.sorokin.yamob.cashmaster.ui.base.BaseActivityFragment
+import com.sorokin.yamob.cashmaster.util.Screens
+import kotlinx.android.synthetic.main.fragment_settings.*
+import javax.inject.Inject
 
-class SettingsFragment : BaseActivityFragment<SettingsViewModel>() {
+class SettingsFragment @Inject constructor(): BaseActivityFragment<SettingsViewModel>() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        btn_to_about.setOnClickListener {
+            viewModel.router.navigateTo(Screens.ABOUT)
+        }
+    }
+
     override fun provideViewModel(): SettingsViewModel = getViewModel(viewModelFactory)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

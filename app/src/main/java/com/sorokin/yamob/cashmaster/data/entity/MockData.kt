@@ -6,7 +6,7 @@ import java.util.*
 object MockData{
     val mainCurrency = "RUS"
     val favoriteCurrencies = mutableListOf(
-            "RUB", "USD", "EUR"
+            "RUB", "USD"
     )
     val exchanges = mutableListOf(
             MoneyExchange("USD", "RUB", 63.49),

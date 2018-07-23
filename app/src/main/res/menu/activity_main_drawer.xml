@@ -2,14 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-    <group android:checkableBehavior="single">
+    <group android:id="@+id/group_top" android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_home_24_b"
             android:title="Home" />
+    </group>
+    <group android:id="@+id/group_bottom" android:checkableBehavior="single">
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_settings_24_b"
             android:title="Settings" />
 
     </group>

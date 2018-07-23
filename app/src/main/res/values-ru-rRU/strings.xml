@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Cash Master</string>
+    <string name="fragment_home_title">Главная</string>
+    <string name="fragment_settings_title">Настройки</string>
+    <string name="balance">Баланс</string>
+    <string name="title_activity_main">Cash Master</string>
+</resources>

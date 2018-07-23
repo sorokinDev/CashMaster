@@ -1,14 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.settings.SettingsFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_username_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:text="@string/username"
+            android:layout_marginBottom="4dp"
+            style="@style/Base.TextAppearance.AppCompat.Subhead"/>
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:textAlignment="textStart"
+            android:text="Yandex"
+            android:layout_below="@id/tv_username_hint"/>
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tv_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="ya@yandex.ru"
+            android:textAlignment="textEnd"
+            android:layout_below="@id/tv_username_hint"/>
+
+        <View
+            android:id="@+id/div_user"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimary"
+            android:layout_below="@id/tv_email"/>
+
+        <TextView
+            android:id="@+id/tv_main_currency_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/div_user"
+            android:text="@string/main_currency_hint"
+            style="@style/Base.TextAppearance.AppCompat.Subhead"
+            android:padding="8dp"/>
+
+        <TextView
+            android:id="@+id/tv_major_currency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="RUB"
+            android:textAlignment="textStart"
+            android:layout_below="@id/tv_main_currency_hint"
+            style="@style/Base.TextAppearance.AppCompat.Medium" />
+
+        <View
+            android:id="@+id/div_currency"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimary"
+            android:layout_below="@id/tv_major_currency"/>
+
+        <Button
+            android:id="@+id/btn_to_about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about_app"
+            android:layout_marginTop="16dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/div_currency"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored" />
+
+    </RelativeLayout>
+</ScrollView>
