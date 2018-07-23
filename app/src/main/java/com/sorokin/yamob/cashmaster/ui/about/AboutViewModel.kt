@@ -10,6 +10,7 @@ import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 class AboutViewModel @Inject constructor(router: Router, resources: Resources) : BaseFragmentViewModel(router, resources) {
+    override val fabIsVisible = mutableLiveDataWithVal(false)
     override val toolbarTitle: MutableLiveData<String> = mutableLiveDataWithVal(resources.getString(R.string.fragment_about_title))
     override val toolbarIsVisible: LiveData<Boolean> = mutableLiveDataWithVal(true)
 

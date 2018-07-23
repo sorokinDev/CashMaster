@@ -15,6 +15,7 @@ class HomeViewModel @Inject constructor(router: Router,
                                         resources: Resources,
                                         var walletRepository: WalletRepository
 ) : BaseFragmentViewModel(router, resources) {
+    override val fabIsVisible = mutableLiveDataWithVal(true)
     override val toolbarTitle: MutableLiveData<String> = mutableLiveDataWithVal(resources.getString(R.string.fragment_home_title))
     override val toolbarIsVisible: LiveData<Boolean> = mutableLiveDataWithVal(true)
 

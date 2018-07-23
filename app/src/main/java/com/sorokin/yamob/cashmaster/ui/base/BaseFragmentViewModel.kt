@@ -15,6 +15,7 @@ abstract class BaseFragmentViewModel(
 ) : BaseViewModel(router, resources) {
     abstract val toolbarTitle: MutableLiveData<String>
     abstract val toolbarIsVisible: LiveData<Boolean>
+    abstract val fabIsVisible: MutableLiveData<Boolean>
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun setToolbarTitleAndVisibility(){

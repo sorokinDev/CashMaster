@@ -14,6 +14,7 @@ class SharedViewModel @Inject constructor(
 ): ViewModel() {
     val title= mutableLiveDataWithVal(resources.getString(R.string.app_name))
     val toolbarIsVisible = mutableLiveDataWithVal(true)
+    val fabIsVisible = mutableLiveDataWithVal(false)
 
     fun setToolbarIsVisible(vis: Boolean){
         toolbarIsVisible.value = vis
@@ -25,6 +26,10 @@ class SharedViewModel @Inject constructor(
 
     fun setToolbarTitle(@StringRes newTitle: Int){
         title.value = resources.getString(newTitle)
+    }
+
+    fun setFabIsVisible(vis: Boolean){
+        fabIsVisible.value = vis
     }
 
 
