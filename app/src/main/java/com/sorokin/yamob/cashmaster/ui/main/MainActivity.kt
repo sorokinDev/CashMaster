@@ -76,7 +76,7 @@ class MainActivity : BaseActivity<MainViewModel>() {
         sharedViewModel.title.observe(this, {
             title = it
         }, {
-            setTitle(resources.getString(R.string.app_name))
+            setTitle(R.string.app_name)
         })
 
         sharedViewModel.fabIsVisible.observe(this, {
@@ -109,14 +109,11 @@ class MainActivity : BaseActivity<MainViewModel>() {
     val navigator = object : SupportAppNavigator(this, R.id.content){
         override fun setupFragmentTransactionAnimation(command: Command?, currentFragment: Fragment?, nextFragment: Fragment?, fragmentTransaction: FragmentTransaction?) {
             super.setupFragmentTransactionAnimation(command, currentFragment, nextFragment, fragmentTransaction)
+            fragmentTransaction?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
         }
 
         override fun createActivityIntent(context: Context?, screenKey: String?, data: Any?): Intent? {
             return null
-        }
-
-        override fun forward(command: Forward?) {
-            super.forward(command)
         }
 
 

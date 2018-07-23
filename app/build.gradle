@@ -10,6 +10,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.sorokin.yamob.cashmaster"
+        vectorDrawables.useSupportLibrary = true
         minSdkVersion 19
         targetSdkVersion 27
         versionCode 1

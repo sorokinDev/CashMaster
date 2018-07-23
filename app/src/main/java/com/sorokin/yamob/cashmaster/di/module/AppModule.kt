@@ -27,13 +27,13 @@ class AppModule {
     @Provides
     @Singleton
     fun provideRouter(): Router {
-        return cicerone.getRouter()
+        return cicerone.router
     }
 
     @Provides
     @Singleton
     fun provideNavigatorHolder(): NavigatorHolder {
-        return cicerone.getNavigatorHolder()
+        return cicerone.navigatorHolder
     }
 
 
