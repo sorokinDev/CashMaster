@@ -6,24 +6,22 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 
 import com.sorokin.yamob.cashmaster.R
 import com.sorokin.yamob.cashmaster.ui.base.BaseActivityFragment
 import com.sorokin.yamob.cashmaster.ui.home.HomeFragment
 import com.sorokin.yamob.cashmaster.util.Screens
 import kotlinx.android.synthetic.main.fragment_settings.*
+import timber.log.Timber
 import javax.inject.Inject
 
 class SettingsFragment : BaseActivityFragment<SettingsViewModel>() {
-    companion object {
-        fun newInstance() = SettingsFragment()
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        btn_to_about.setOnClickListener {
-            viewModel.router.navigateTo(Screens.ABOUT)
-        }
+        btn_to_about.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.nav_action_settings_to_about, null))
     }
 
     override fun provideViewModel(): SettingsViewModel = getViewModel(viewModelFactory)

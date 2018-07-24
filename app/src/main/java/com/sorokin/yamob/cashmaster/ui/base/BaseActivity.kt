@@ -1,10 +1,9 @@
-package com.sorokin.yamob.cashmaster.ui.main
+package com.sorokin.yamob.cashmaster.ui.base
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.os.PersistableBundle
 import dagger.android.support.DaggerAppCompatActivity
 
 abstract class BaseActivity<T: ViewModel>: DaggerAppCompatActivity() {

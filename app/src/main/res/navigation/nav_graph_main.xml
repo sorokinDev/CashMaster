@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    app:startDestination="@id/nav_tab_home">
+    <navigation android:id="@+id/nav_tab_home" app:startDestination="@id/nav_home">
+        <fragment
+            android:id="@+id/nav_home"
+            android:name="com.sorokin.yamob.cashmaster.ui.home.HomeFragment"
+            android:label="@string/nav_home"
+            tools:layout="@layout/fragment_home">
+        </fragment>
+    </navigation>
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.sorokin.yamob.cashmaster.ui.settings.SettingsFragment"
+        android:label="@string/nav_settings"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/nav_action_settings_to_about"
+            app:destination="@id/nav_about"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="com.sorokin.yamob.cashmaster.ui.about.AboutFragment"
+        android:label="@string/nav_about"
+        tools:layout="@layout/fragment_about"/>
+
+</navigation>
