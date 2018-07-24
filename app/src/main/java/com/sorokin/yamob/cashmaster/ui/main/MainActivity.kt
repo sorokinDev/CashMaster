@@ -39,11 +39,6 @@ class MainActivity : BaseActivity<MainViewModel>() {
 
     @Inject lateinit var navHolder: NavigatorHolder
 
-    @Inject lateinit var homeFragment: HomeFragment
-    @Inject lateinit var settingsFragment: SettingsFragment
-    @Inject lateinit var aboutFragment: AboutFragment
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -118,10 +113,10 @@ class MainActivity : BaseActivity<MainViewModel>() {
 
 
         override fun createFragment(screenKey: String?, data: Any?): Fragment?  = when(screenKey){
-            Screens.HOME -> homeFragment
-            Screens.SETTINGS -> settingsFragment
-            Screens.ABOUT -> aboutFragment
-            else -> homeFragment
+            Screens.HOME -> HomeFragment.newInstance()
+            Screens.SETTINGS -> SettingsFragment.newInstance()
+            Screens.ABOUT -> AboutFragment.newInstance()
+            else -> HomeFragment.newInstance()
         }
     }
 }

@@ -12,7 +12,10 @@ import com.sorokin.yamob.cashmaster.util.toMoney
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
 
-class HomeFragment @Inject constructor(): BaseActivityFragment<HomeViewModel>() {
+class HomeFragment : BaseActivityFragment<HomeViewModel>() {
+    companion object {
+        fun newInstance() = HomeFragment()
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
