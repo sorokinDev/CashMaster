@@ -9,11 +9,16 @@ import android.view.ViewGroup
 
 import com.sorokin.yamob.cashmaster.R
 import com.sorokin.yamob.cashmaster.ui.base.BaseActivityFragment
+import com.sorokin.yamob.cashmaster.ui.home.HomeFragment
 import com.sorokin.yamob.cashmaster.util.Screens
 import kotlinx.android.synthetic.main.fragment_settings.*
 import javax.inject.Inject
 
-class SettingsFragment @Inject constructor(): BaseActivityFragment<SettingsViewModel>() {
+class SettingsFragment : BaseActivityFragment<SettingsViewModel>() {
+    companion object {
+        fun newInstance() = SettingsFragment()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         btn_to_about.setOnClickListener {
