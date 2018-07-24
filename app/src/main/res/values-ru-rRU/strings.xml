@@ -8,7 +8,7 @@
     <string name="nav_home">Главная</string>
     <string name="this_button_will_work">Эта кнопка скоро заработает</string>
     <string name="nav_settings">Настройки</string>
-    <string name="fragment_about_title">О приложении</string>
+    <string name="nav_about">О приложении</string>
     <string name="about_app">О приложении</string>
     <string name="main_currency_hint">Основная валюта</string>
     <string name="username">Пользователь</string>
