@@ -11,9 +11,7 @@ import javax.inject.Inject
 abstract class BaseFragmentViewModel(
         resources: Resources
 ) : BaseViewModel(resources) {
-    abstract val toolbarTitle: MutableLiveData<String>
     abstract val toolbarIsVisible: LiveData<Boolean>
     abstract val fabIsVisible: MutableLiveData<Boolean>
-
 }
 

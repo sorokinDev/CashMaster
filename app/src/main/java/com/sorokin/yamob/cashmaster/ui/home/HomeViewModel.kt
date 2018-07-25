@@ -13,7 +13,6 @@ class HomeViewModel @Inject constructor(resources: Resources,
                                         private val walletRepository: WalletRepository
 ) : BaseFragmentViewModel(resources) {
     override val fabIsVisible = mutableLiveDataWithVal(true)
-    override val toolbarTitle: MutableLiveData<String> = mutableLiveDataWithVal(resources.getString(R.string.fragment_home_title))
     override val toolbarIsVisible: LiveData<Boolean> = mutableLiveDataWithVal(true)
 
     val currentCurrency = mutableLiveDataWithVal("RUB")

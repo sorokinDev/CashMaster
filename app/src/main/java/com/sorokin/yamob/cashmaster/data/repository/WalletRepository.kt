@@ -14,16 +14,20 @@ class WalletRepository @Inject constructor(){
                     (it.destinationCurrency == sourceCurrency && it.sourceCurrency == destinationCurrency)
         }
 
-        return if (exc != null) amount * if (exc.sourceCurrency == sourceCurrency) exc.rate else 1 / exc.rate
-        else amount
+        return  if (exc != null)
+                    amount * if (exc.sourceCurrency == sourceCurrency) exc.rate else 1 / exc.rate
+                else
+                    amount
     }
     //endregion
 
     //region TRANSACTIONS
     fun getAllTransactions(): List<MoneyTransaction> = MockData.transactions
-    fun getLastTransactions(n: Int): List<MoneyTransaction> = MockData.transactions.takeLast(n).toList()
+    fun getLastNTransactions(n: Int): List<MoneyTransaction> = MockData.transactions.takeLast(n).toList()
     fun getTransactionById(id: Int): MoneyTransaction? =
             if(id < MockData.transactions.count()) MockData.transactions[id] else null
+    fun getTransactionsByType(type: MoneyTransaction.Type): List<MoneyTransaction> =
+            MockData.transactions.filter { it.type == type }.toList()
 
     fun addTransaction(transaction: MoneyTransaction){
         val transEx = MoneyTransaction(
@@ -40,23 +44,22 @@ class WalletRepository @Inject constructor(){
     }
 
     fun sumAllTransactions():Double =
-            MockData.transactions.sumByDouble {
+            getAllTransactions().sumByDouble {
                 if (it.type == MoneyTransaction.Type.INCOMING) it.amount
                 else -it.amount
             }
 
+
     fun sumTransactionsByType(transactionType: MoneyTransaction.Type): Double =
-            MockData.transactions.sumByDouble {
-                if (it.type == transactionType) it.amount
-                else 0.0
-            }
+            getTransactionsByType(transactionType).sumByDouble { it.amount }
     //endregion
 
     //region WALLET
     fun getWallet() = MockData.wallet
-    fun getWalletInCurrency(currency: String) = Wallet(
-            exchangeMoney(MockData.wallet.money, MockData.wallet.currency, currency),
-            currency
-    )
+    fun getWalletInCurrency(currency: String) =
+            Wallet(
+                exchangeMoney(MockData.wallet.money, MockData.wallet.currency, currency),
+                currency
+            )
     //endregion
 }

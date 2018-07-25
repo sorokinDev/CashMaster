@@ -14,3 +14,7 @@ fun <T> LiveData<T>.observe(owner: LifecycleOwner, notNull: (data : T) -> Unit,
         }
     })
 }
+
+fun <T> LiveData<T>.observe(owner: LifecycleOwner, notNull: (data : T) -> Unit) {
+    this.observe(owner, android.arch.lifecycle.Observer { if(it != null) notNull(it) })
+}

@@ -73,7 +73,7 @@
             android:id="@+id/btn_to_about"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/about_app"
+            android:text="@string/nav_about"
             android:layout_marginTop="16dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/div_currency"

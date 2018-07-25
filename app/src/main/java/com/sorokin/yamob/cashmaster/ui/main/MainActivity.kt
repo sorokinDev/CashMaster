@@ -51,26 +51,21 @@ class MainActivity : BaseActivity<MainViewModel>() {
     fun initViewModel() {
         sharedViewModel = ViewModelProviders.of(this, viewModelFactory)[SharedViewModel::class.java]
 
-        sharedViewModel.toolbarIsVisible.observe(this, {
+        sharedViewModel.toolbarIsVisible.observe(this) {
             toolbar.visibility = if (it) View.VISIBLE else View.GONE
-        })
+        }
 
-        sharedViewModel.title.observe(this, {
-            title = it
-        }, {
-            setTitle(R.string.app_name)
-        })
-
-        sharedViewModel.fabIsVisible.observe(this, {
+        sharedViewModel.fabIsVisible.observe(this) {
             if(it) floatingActionButton.show()
             else floatingActionButton.hide()
-        })
+        }
     }
 
     fun initNav(){
+        // FIX : Navigation components doesn't set title on launch or after orientation changes.
+        title = findNavController(R.id.fragment_main_nav_host).currentDestination.label
         NavigationUI.setupWithNavController(toolbar, findNavController(R.id.fragment_main_nav_host))
         NavigationUI.setupWithNavController(navigation, findNavController(R.id.fragment_main_nav_host))
-
     }
 
 }

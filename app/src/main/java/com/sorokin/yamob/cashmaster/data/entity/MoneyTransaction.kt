@@ -6,10 +6,10 @@ import java.util.*
 
 
 class MoneyTransaction(
-        var amount: Double,
-        var currency: String,
-        var date: Date,
-        var type: MoneyTransaction.Type
+        val amount: Double,
+        val currency: String,
+        val date: Date,
+        val type: MoneyTransaction.Type
 ){
     enum class Type{
         INCOMING, EXPENSE

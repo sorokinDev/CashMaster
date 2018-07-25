@@ -13,18 +13,17 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
 
 class HomeFragment : BaseActivityFragment<HomeViewModel>() {
-    companion object {
-        fun newInstance() = HomeFragment()
-    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         rb_currency_0.text = "RUB"
         rb_currency_1.text = "USD"
 
-        viewModel.walletInCurrentCurrency.observe(this, {
-            tv_balance.text = it.money.toMoney().toString()
-        })
+        viewModel.walletInCurrentCurrency.observe(this) {
+            tv_balance.text = it.money.toMoney().toString() + if(viewModel.currentCurrency.value == "RUB") "\u20BD" else "$"
+        }
+
         rg_currencies.setOnCheckedChangeListener { _, checkedId ->
             when(checkedId){
                 R.id.rb_currency_0 -> viewModel.setCurrentCurrency("RUB")
