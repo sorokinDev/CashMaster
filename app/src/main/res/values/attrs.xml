@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CurrencyRadioGroup">
+        <attr name="crg_rb_textColor" format="color" />
+    </declare-styleable>
+</resources>

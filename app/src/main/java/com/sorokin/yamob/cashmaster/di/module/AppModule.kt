@@ -19,5 +19,4 @@ class AppModule {
     @Singleton
     fun provideResources(app: Application): Resources = app.applicationContext.resources
 
-
 }
