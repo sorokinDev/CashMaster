@@ -1,6 +1,7 @@
 package com.sorokin.yamob.cashmaster.di.module
 
 import com.sorokin.yamob.cashmaster.ui.about.AboutFragment
+import com.sorokin.yamob.cashmaster.ui.home.HomeFragment
 import com.sorokin.yamob.cashmaster.ui.transaction_add.TransactionAddFragment
 import com.sorokin.yamob.cashmaster.ui.main.MainActivity
 import com.sorokin.yamob.cashmaster.ui.settings.SettingsFragment
@@ -14,7 +15,10 @@ abstract class ViewModule {
     abstract fun mainActivity(): MainActivity
 
     @ContributesAndroidInjector
-    abstract fun homeFragment(): TransactionAddFragment
+    abstract fun homeFragment(): HomeFragment
+
+    @ContributesAndroidInjector
+    abstract fun transactionAddFragment(): TransactionAddFragment
 
     @ContributesAndroidInjector
     abstract fun settingsFragment(): SettingsFragment
