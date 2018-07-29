@@ -24,4 +24,9 @@
         <item name="android:dividerHeight">0.5dp</item>
     </style>
 
+    <style name="EditTextWhite" parent="Widget.Design.TextInputLayout">
+        <item name="colorControlActivated">#FFFFFF</item>
+        <item name="colorControlNormal">#AAAAAA</item>
+    </style>
+
 </resources>

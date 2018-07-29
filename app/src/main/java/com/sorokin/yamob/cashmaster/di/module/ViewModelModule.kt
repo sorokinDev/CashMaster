@@ -2,7 +2,7 @@ package com.sorokin.yamob.cashmaster.di.module
 
 import android.arch.lifecycle.ViewModel
 import com.sorokin.yamob.cashmaster.ui.about.AboutViewModel
-import com.sorokin.yamob.cashmaster.ui.home.HomeViewModel
+import com.sorokin.yamob.cashmaster.ui.transaction_new.TransactionNewViewModel
 import com.sorokin.yamob.cashmaster.ui.transaction_add.TransactionAddViewModel
 import com.sorokin.yamob.cashmaster.ui.main.MainViewModel
 import com.sorokin.yamob.cashmaster.ui.settings.SettingsViewModel
@@ -26,8 +26,8 @@ internal abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(HomeViewModel::class)
-    abstract fun HomeViewModel(viewModel : HomeViewModel) : ViewModel
+    @ViewModelKey(TransactionNewViewModel::class)
+    abstract fun HomeViewModel(viewModel : TransactionNewViewModel) : ViewModel
 
     @Binds
     @IntoMap

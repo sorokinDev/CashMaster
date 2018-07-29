@@ -1,8 +1,11 @@
 package com.sorokin.yamob.cashmaster.ui.transaction_add
 
 import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
 import android.content.res.Resources
-import com.sorokin.yamob.cashmaster.data.repository.WalletRepository
+import com.sorokin.yamob.cashmaster.data.entity.MoneyTransaction
+import com.sorokin.yamob.cashmaster.data.entity.MoneyTransactionTarget
+import com.sorokin.yamob.cashmaster.data.entity.Wallet
 import com.sorokin.yamob.cashmaster.ui.base.BaseFragmentViewModel
 import com.sorokin.yamob.cashmaster.util.mutableLiveDataWithVal
 import javax.inject.Inject
@@ -14,11 +17,27 @@ class TransactionAddViewModel @Inject constructor(resources: Resources,
     override val fabIsVisible = mutableLiveDataWithVal(false)
     override val toolbarIsVisible: LiveData<Boolean> = mutableLiveDataWithVal(true)
 
-    val transactionTypes = mutableLiveDataWithVal(listOf("Expense", "Income"))
-    val accounts = mutableLiveDataWithVal(listOf("Cash", "VISA", "Card 2"))
-    val categories = mutableLiveDataWithVal(listOf("Car", "Food", "House", "Medicine", "Car 1", "Food 1", "House 1", "Medicine 1", "Car 2", "Food 2", "House 2", "Medicine 2",
-            "Car 3", "Food 3", "House 3", "Medicine 3"))
-    val currencies = mutableLiveDataWithVal(listOf("RUB", "USD", "EUR", "GBP"))
+    val transactionType = MutableLiveData<Int>()
+    val walletFrom = MutableLiveData<Wallet>()
+    val walletTo = MutableLiveData<Wallet>()
+    val targetFrom = MutableLiveData<MoneyTransactionTarget>()
+    val targetTo = MutableLiveData<MoneyTransactionTarget>()
 
+
+    fun setTransactionType(tt: Int){
+        transactionType.value = tt
+    }
+    fun setWalletFromId(id: Int){
+        walletFrom.value = Wallet(1, "Cash", 1000.0, "RUB", Wallet.CASH)
+    }
+    fun setWalletToId(id: Int){
+        walletTo.value = Wallet(2, "Sberbank", 1000.0, "RUB", Wallet.BANK_CARD)
+    }
+    fun setTargetToId(id: Int){
+        targetTo.value = MoneyTransactionTarget(1, "Car", MoneyTransaction.EXPENSE)
+    }
+    fun setTargetFromId(id: Int){
+        targetFrom.value = MoneyTransactionTarget(2, "Job", MoneyTransaction.INCOME)
+    }
 
 }

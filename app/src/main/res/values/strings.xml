@@ -27,6 +27,10 @@ Cras congue iaculis leo vel gravida. Integer sed scelerisque felis. Donec laoree
     <string name="income">Income</string>
     <string name="expense">Expense</string>
     <string name="category">Category</string>
-    <string name="hint_money">Transaction sum</string>
+    <string name="hint_money">Sum</string>
     <string name="nav_transaction_add">Add transaction</string>
+    <string name="hint_from">From</string>
+    <string name="hint_to">To</string>
+    <string name="btn_confirm">Confirm</string>
+    <string name="nav_new_trans">Add</string>
 </resources>

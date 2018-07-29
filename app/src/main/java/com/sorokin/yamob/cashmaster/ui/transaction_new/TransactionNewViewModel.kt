@@ -1,23 +1,24 @@
-package com.sorokin.yamob.cashmaster.data.entity
+package com.sorokin.yamob.cashmaster.ui.transaction_new
 
+import android.content.res.Resources
+import com.sorokin.yamob.cashmaster.data.entity.MoneyTransaction
+import com.sorokin.yamob.cashmaster.data.entity.MoneyTransactionTarget
+import com.sorokin.yamob.cashmaster.data.entity.Wallet
+import com.sorokin.yamob.cashmaster.ui.base.BaseFragmentViewModel
 import com.sorokin.yamob.cashmaster.util.mutableLiveDataWithVal
-import java.util.*
+import javax.inject.Inject
 
-object MockData{
-    val currencies = listOf("RUB", "USD", "EUR")
-    val exchanges = listOf(
-            MoneyExchange("RUB", "USD", 1 / 60.0),
-            MoneyExchange("RUB", "EUR", 1 / 80.0),
-            MoneyExchange("USD", "RUB", 60.0),
-            MoneyExchange("EUR", "RUB", 80.0),
-            MoneyExchange("USD", "EUR", 0.75),
-            MoneyExchange("EUR", "USD", 1 / 0.75)
-    )
-    val wallets = listOf(
+class TransactionNewViewModel @Inject constructor(resources: Resources) : BaseFragmentViewModel(resources) {
+    override val bottomNavigationIsVisible = mutableLiveDataWithVal(true)
+    override val toolbarIsVisible = mutableLiveDataWithVal(true)
+    override val fabIsVisible = mutableLiveDataWithVal(false)
+
+    val wallets = mutableLiveDataWithVal(listOf(
             Wallet(0, "Cash", 1000.0, "RUB", Wallet.CASH),
-            Wallet(1, "Tinkoff",32100.0, "USD", Wallet.BANK_CARD))
+            Wallet(1, "Tinkoff",32100.0, "USD", Wallet.BANK_CARD),
+            Wallet(2, "Bank", 456321.0, "EUR", Wallet.BANK_ACCOUNT)))
 
-    val targets = listOf(
+    val targets = mutableLiveDataWithVal(listOf(
             MoneyTransactionTarget(0, "JOB", MoneyTransaction.INCOME),
             MoneyTransactionTarget(1, "Freelance", MoneyTransaction.INCOME),
             MoneyTransactionTarget(2, "Tutoring", MoneyTransaction.INCOME),
@@ -29,9 +30,6 @@ object MockData{
             MoneyTransactionTarget(8, "Food", MoneyTransaction.EXPENSE),
             MoneyTransactionTarget(9, "Gifts", MoneyTransaction.EXPENSE),
             MoneyTransactionTarget(10, "Travelling", MoneyTransaction.EXPENSE)
-    )
-    val transactions = mutableListOf(
-            MoneyTransaction(0, 500.0, "RUB", Date(), 0, targets[0],
-                    MoneyTransaction.INCOME,0, wallets[0])
-    )
+
+    ))
 }

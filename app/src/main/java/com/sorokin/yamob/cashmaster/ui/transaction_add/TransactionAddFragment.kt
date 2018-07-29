@@ -13,8 +13,7 @@ import android.text.TextWatcher
 import com.sorokin.yamob.cashmaster.util.observe
 import timber.log.Timber
 import android.widget.ArrayAdapter
-
-
+import com.sorokin.yamob.cashmaster.data.entity.MoneyTransaction
 
 
 class TransactionAddFragment : BaseActivityFragment<TransactionAddViewModel>() {
@@ -25,52 +24,33 @@ class TransactionAddFragment : BaseActivityFragment<TransactionAddViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        rg_trans_type.onSelectedItemChanged = {
-            Timber.i("Type clicked: ${viewModel.transactionTypes.value?.get(it)}")
-        }
-        viewModel.transactionTypes.observe(this){
-            rg_trans_type.setItems(it)
-        }
-
-        rg_trans_account.onSelectedItemChanged = {
-            Timber.i("Wallet clicked: ${viewModel.accounts.value?.get(it)}")
-        }
-        viewModel.accounts.observe(this){
-            rg_trans_account.setItems(it)
-        }
-
-        categoryAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line)
-        //et_category.dropDownVerticalOffset = 0
-        et_category.setOnFocusChangeListener { v, hasFocus ->
-            if(hasFocus){
-                Timber.i("TOP = ${et_category.top}, scrollY = ${et_category.scrollY}")
-                scroll_home.smoothScrollTo(0, et_category.scrollY)
+        val args = TransactionAddFragmentArgs.fromBundle(arguments)
+        viewModel.setTransactionType(args.transactionType)
+        viewModel.transactionType.observe(this){
+            if(it == MoneyTransaction.INCOME){
+                tv_transaction_type.text = "Income"
+            }else if(it == MoneyTransaction.EXPENSE){
+                tv_transaction_type.text = "Expense"
             }
         }
-        et_category.addTextChangedListener(object : TextWatcher{
-            override fun afterTextChanged(s: Editable?) {
+        if(args.transactionType == MoneyTransaction.INCOME){
+            viewModel.setTargetFromId(args.target)
+            viewModel.targetFrom.observe(this){
+                tv_from.text = it.name
             }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            viewModel.setWalletToId(args.walletTo)
+            viewModel.walletTo.observe(this){
+                tv_to.text = it.name
             }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                //et_category.dropDownVerticalOffset = 0
+        }else if(args.transactionType == MoneyTransaction.EXPENSE){
+            viewModel.setWalletFromId(args.walletFrom)
+            viewModel.walletFrom.observe(this){
+                tv_from.text = it.name
             }
-
-        })
-        et_category.setAdapter(categoryAdapter)
-        viewModel.categories.observe(this){
-            categoryAdapter.clear()
-            categoryAdapter.addAll(it)
-            categoryAdapter.notifyDataSetChanged()
-        }
-
-        currencyAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item)
-        spinner_currencies.adapter = currencyAdapter
-        viewModel.currencies.observe(this){
-            currencyAdapter.clear()
-            currencyAdapter.addAll(it)
+            viewModel.setTargetToId(args.target)
+            viewModel.targetTo.observe(this){
+                tv_to.text = it.name
+            }
         }
 
     }
@@ -80,6 +60,7 @@ class TransactionAddFragment : BaseActivityFragment<TransactionAddViewModel>() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_add_transaction, container, false)
+
     }
 
 

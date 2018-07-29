@@ -1,4 +1,4 @@
-package com.sorokin.yamob.cashmaster.ui.home.delegate_adapter
+package com.sorokin.yamob.cashmaster.ui.transaction_new.delegate_adapter
 
 import com.example.delegateadapter.delegate.KDelegateAdapter
 import com.example.delegateadapter.delegate.diff.IComparableItem

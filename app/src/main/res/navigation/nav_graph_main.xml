@@ -6,22 +6,40 @@
     <navigation android:id="@+id/nav_tab_home" app:startDestination="@id/nav_home">
         <fragment
             android:id="@+id/nav_home"
-            android:name="com.sorokin.yamob.cashmaster.ui.home.HomeFragment"
+            android:name="com.sorokin.yamob.cashmaster.ui.transaction_new.TransactionNewFragment"
             android:label="@string/nav_home"
-            tools:layout="@layout/fragment_home">
+            tools:layout="@layout/fragment_new_transaction">
             <action
                 android:id="@+id/nav_action_add_transaction"
                 app:destination="@id/nav_transaction_add"
                 app:enterAnim="@anim/slide_in_right"
                 app:exitAnim="@anim/slide_out_left"
                 app:popEnterAnim="@android:anim/slide_in_left"
-                app:popExitAnim="@android:anim/slide_out_right"/>
+                app:popExitAnim="@android:anim/slide_out_right">
+            </action>
         </fragment>
         <fragment
             android:id="@+id/nav_transaction_add"
             android:name="com.sorokin.yamob.cashmaster.ui.transaction_add.TransactionAddFragment"
             android:label="@string/nav_transaction_add"
             tools:layout="@layout/fragment_add_transaction">
+            <argument
+                android:name="transaction_type"
+                app:argType="integer"
+                android:defaultValue="-1"/>
+            <argument
+                android:name="wallet_from"
+                app:argType="integer"
+                android:defaultValue="-1"/>
+            <argument
+                android:name="wallet_to"
+                app:argType="integer"
+                android:defaultValue="-1"
+                />
+            <argument
+                android:name="target"
+                app:argType="integer"
+                android:defaultValue="-1"/>
         </fragment>
     </navigation>
     <fragment
