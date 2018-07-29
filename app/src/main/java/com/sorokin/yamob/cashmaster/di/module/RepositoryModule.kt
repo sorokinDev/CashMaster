@@ -6,8 +6,8 @@ import javax.inject.Singleton
 
 @Module
 class RepositoryModule {
-    @Provides
+    /*@Provides
     @Singleton
-    fun provideWalletRepository(): WalletRepository = WalletRepository()
+    fun provideWalletRepository(): WalletRepository = WalletRepository()*/
 
 }

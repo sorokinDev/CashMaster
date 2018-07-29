@@ -7,6 +7,7 @@ import com.sorokin.yamob.cashmaster.ui.transaction_add.TransactionAddViewModel
 import com.sorokin.yamob.cashmaster.ui.main.MainViewModel
 import com.sorokin.yamob.cashmaster.ui.settings.SettingsViewModel
 import com.sorokin.yamob.cashmaster.ui.shared.SharedViewModel
+import com.sorokin.yamob.cashmaster.ui.transactions_show.TransactionsViewModel
 import com.sorokin.yamob.mycash.util.ViewModelKey
 import dagger.Binds
 import dagger.Module
@@ -26,8 +27,13 @@ internal abstract class ViewModelModule {
 
     @Binds
     @IntoMap
+    @ViewModelKey(TransactionsViewModel::class)
+    abstract fun bindTransactionsViewModel(viewModel : TransactionsViewModel) : ViewModel
+
+    @Binds
+    @IntoMap
     @ViewModelKey(TransactionNewViewModel::class)
-    abstract fun HomeViewModel(viewModel : TransactionNewViewModel) : ViewModel
+    abstract fun bindTransactionNewViewModel(viewModel : TransactionNewViewModel) : ViewModel
 
     @Binds
     @IntoMap

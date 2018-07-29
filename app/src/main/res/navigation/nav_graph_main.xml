@@ -2,20 +2,28 @@
 <navigation xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    app:startDestination="@id/nav_tab_home">
-    <navigation android:id="@+id/nav_tab_home" app:startDestination="@id/nav_home">
+    app:startDestination="@id/nav_tab_transactions">
+
+    <navigation android:id="@+id/nav_tab_transactions" app:startDestination="@id/nav_transactions">
         <fragment
-            android:id="@+id/nav_home"
+            android:id="@+id/nav_transactions"
+            android:name="com.sorokin.yamob.cashmaster.ui.transactions_show.TransactionsFragment"
+            android:label="@string/nav_transactions"
+            tools:layout="@layout/fragment_transactions">
+        </fragment>
+    </navigation>
+
+    <navigation android:id="@+id/nav_new_trans" app:startDestination="@id/nav_new_transactions">
+        <fragment
+            android:id="@+id/nav_new_transactions"
             android:name="com.sorokin.yamob.cashmaster.ui.transaction_new.TransactionNewFragment"
-            android:label="@string/nav_home"
+            android:label="@string/nav_new_trans"
             tools:layout="@layout/fragment_new_transaction">
             <action
                 android:id="@+id/nav_action_add_transaction"
                 app:destination="@id/nav_transaction_add"
-                app:enterAnim="@anim/slide_in_right"
-                app:exitAnim="@anim/slide_out_left"
-                app:popEnterAnim="@android:anim/slide_in_left"
-                app:popExitAnim="@android:anim/slide_out_right">
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out">
             </action>
         </fragment>
         <fragment
@@ -40,6 +48,14 @@
                 android:name="target"
                 app:argType="integer"
                 android:defaultValue="-1"/>
+            <action
+                android:id="@+id/nav_action_add_trans_completed"
+                app:popUpTo="@id/nav_new_transactions"
+                app:popUpToInclusive="false"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"/>
         </fragment>
     </navigation>
     <fragment

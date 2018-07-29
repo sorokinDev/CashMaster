@@ -19,9 +19,6 @@ import kotlinx.android.synthetic.main.fragment_new_transaction.*
 import timber.log.Timber
 
 class TransactionNewFragment : BaseActivityFragment<TransactionNewViewModel>() {
-    companion object {
-        fun newInstance() = TransactionNewFragment()
-    }
 
     lateinit var mainRVAdapter: MyDiffUtilCompositeAdapter
     lateinit var layoutManager: GridLayoutManager
@@ -39,18 +36,18 @@ class TransactionNewFragment : BaseActivityFragment<TransactionNewViewModel>() {
     fun updateDataInRv(){
         data.clear()
 
-        data.add(TextItem("Accounts"))
+        viewModel.targets.value?.filter { it.transactionType == MoneyTransaction.INCOME }?.forEachIndexed { _, tp ->
+            data.add(TargetItem(tp))
+        }
+        data.add(Divider())
+
         viewModel.wallets.value?.forEachIndexed { _, tp ->
             data.add(WalletItem(tp))
         }
+        data.add(Divider())
 
-        data.add(TextItem("Income targets"))
-        viewModel.targets.value?.takeWhile { it.transactionType == MoneyTransaction.INCOME }?.forEachIndexed { _, tp ->
-            data.add(TargetItem(tp))
-        }
 
-        data.add(TextItem("Expense targets"))
-        viewModel.targets.value?.dropWhile { it.transactionType == MoneyTransaction.INCOME }?.forEachIndexed { _, tp ->
+        viewModel.targets.value?.filter { it.transactionType == MoneyTransaction.EXPENSE }?.forEachIndexed { _, tp ->
             data.add(TargetItem(tp))
         }
         mainRVAdapter.swapData(data)
@@ -73,7 +70,7 @@ class TransactionNewFragment : BaseActivityFragment<TransactionNewViewModel>() {
         layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup(){
             override fun getSpanSize(position: Int): Int {
                 return when(mainRVAdapter.getItem(position)){
-                    is TextItem -> layoutManager.spanCount
+                    is Divider -> layoutManager.spanCount
                     else -> 1
                 }
             }
@@ -99,7 +96,7 @@ class TransactionNewFragment : BaseActivityFragment<TransactionNewViewModel>() {
         }
 
         mainRVAdapter = MyDiffUtilCompositeAdapter.Builder()
-                .add(TextDelegateAdapter())
+                .add(DividerDelegateAdapter())
                 .add(TargetDelegateAdapter())
                 .add(WalletDelegateAdapter())
                 .build()

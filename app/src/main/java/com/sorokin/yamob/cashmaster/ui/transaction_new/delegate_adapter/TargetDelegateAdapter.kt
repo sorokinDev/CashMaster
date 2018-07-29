@@ -11,8 +11,9 @@ import com.sorokin.yamob.cashmaster.R
 import com.sorokin.yamob.cashmaster.data.entity.MoneyTransaction
 import com.sorokin.yamob.cashmaster.data.entity.MoneyTransactionTarget
 import kotlinx.android.synthetic.main.item_category.*
+import kotlinx.android.synthetic.main.item_wallet.*
 import timber.log.Timber
-
+import java.text.DecimalFormat
 
 
 class TargetItem(var target: MoneyTransactionTarget): IComparableItem {
@@ -24,6 +25,8 @@ class TargetItem(var target: MoneyTransactionTarget): IComparableItem {
 }
 
 class TargetDelegateAdapter : KDelegateAdapter<TargetItem>() {
+    val numberFormatter = DecimalFormat("#,###")
+
     override fun getLayoutId(): Int = R.layout.item_category
 
     override fun isForViewType(items: MutableList<*>, pos: Int): Boolean = items[pos] is TargetItem
@@ -32,11 +35,14 @@ class TargetDelegateAdapter : KDelegateAdapter<TargetItem>() {
         Timber.i("BIND: ${item.target.name}")
         itemView.tag = item
         viewHolder.tv_target_title.text = item.target.name
+        viewHolder.tv_target_balance.text =
+                numberFormatter.format(500 + (10000 * Math.random()).toInt()).replace(',', ' ') + "\u20BD"
+        viewHolder.iv_target_icon.setImageResource(item.target.drawable)
 
         if(item.target.transactionType == MoneyTransaction.EXPENSE){
-            tv_target_title.setTextColor(ResourcesCompat.getColor(itemView.resources, R.color.colorExpense, null))
+            tv_target_balance.setTextColor(ResourcesCompat.getColor(itemView.resources, R.color.colorExpense, null))
         }else{
-            tv_target_title.setTextColor(ResourcesCompat.getColor(itemView.resources, R.color.colorIncome , null))
+            tv_target_balance.setTextColor(ResourcesCompat.getColor(itemView.resources, R.color.colorIncome , null))
         }
 
         itemView.setOnLongClickListener {

@@ -11,25 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <FrameLayout
-            android:id="@+id/frameLayout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@color/colorPrimary"
-            app:layout_constraintBottom_toBottomOf="@+id/space_after_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/tv_transaction_type"
             style="@style/Base.TextAppearance.AppCompat.Large"
-            android:textColor="@android:color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
+            android:textColor="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -43,14 +33,14 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/hint_from"
-            android:textColor="@android:color/white"
+            android:textColor="@color/colorAccent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_transaction_type" />
 
         <TextView
             android:id="@+id/tv_from"
             style="@style/Base.TextAppearance.AppCompat.Large"
-            android:textColor="@android:color/white"
+            android:textColor="@color/colorAccent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -63,17 +53,16 @@
             style="@style/Base.TextAppearance.AppCompat.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:text="@string/hint_to"
-            android:textColor="@android:color/white"
+            android:textColor="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_transaction_type" />
+            app:layout_constraintTop_toTopOf="@+id/tv_hint_from" />
 
         <TextView
             android:id="@+id/tv_to"
             style="@style/Base.TextAppearance.AppCompat.Large"
-            android:textColor="@android:color/white"
+            android:textColor="@color/colorAccent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -85,42 +74,41 @@
             android:id="@+id/til_sum"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:layout_marginRight="16dp"
-            android:textColorHint="@android:color/white"
+            android:layout_marginEnd="8dp"
+            android:textColorHint="@color/colorAccent"
+            app:layout_constraintEnd_toStartOf="@+id/spinner_currencies"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_from">
 
             <android.support.v7.widget.AppCompatEditText
                 android:id="@+id/et_sum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:hint="@string/hint_money"
                 android:inputType="number"
                 android:textAlignment="center"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white"
-                android:textSize="28sp"
-                app:backgroundTint="@android:color/white" />
+                android:textColor="@color/colorAccent"
+                android:textColorHint="@color/colorAccent"
+                android:textSize="28sp" />
         </android.support.design.widget.TextInputLayout>
 
 
         <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/spinner_currencies"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:spinnerMode="dialog"
+            android:layout_marginEnd="8dp"
+            android:spinnerMode="dropdown"
             android:textSize="28sp"
             app:backgroundTint="@color/colorAccent"
-            app:layout_constraintBottom_toTopOf="@+id/space_after_button"
-            app:layout_constraintRight_toRightOf="@id/til_sum"
-            app:layout_constraintTop_toTopOf="@+id/btn_confirm" />
+            app:layout_constraintBottom_toBottomOf="@+id/til_sum"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/til_sum" />
 
 
         <Button
@@ -129,26 +117,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/button_rounded"
             android:paddingStart="40dp"
             android:paddingEnd="40dp"
-            android:background="@drawable/button_rounded"
+            android:text="@string/btn_confirm"
             android:textColor="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/til_sum"
-            android:text="@string/btn_confirm" />
-
-        <Space
-            android:id="@+id/space_after_button"
-            android:layout_width="0dp"
-            android:layout_height="16dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_confirm" />
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
     <!--<android.support.constraint.ConstraintLayout-->

@@ -36,7 +36,7 @@ class MainActivity : BaseActivity<MainViewModel>() {
         initNav()
 
         if(savedInstanceState == null){
-            navigation.selectedItemId = R.id.nav_tab_home
+            navigation.selectedItemId = R.id.nav_tab_transactions
         }
     }
 

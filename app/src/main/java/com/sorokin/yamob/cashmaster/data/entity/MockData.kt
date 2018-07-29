@@ -1,5 +1,6 @@
 package com.sorokin.yamob.cashmaster.data.entity
 
+import com.sorokin.yamob.cashmaster.R
 import com.sorokin.yamob.cashmaster.util.mutableLiveDataWithVal
 import java.util.*
 
@@ -14,21 +15,22 @@ object MockData{
             MoneyExchange("EUR", "USD", 1 / 0.75)
     )
     val wallets = listOf(
-            Wallet(0, "Cash", 1000.0, "RUB", Wallet.CASH),
-            Wallet(1, "Tinkoff",32100.0, "USD", Wallet.BANK_CARD))
+            Wallet(0, "Cash", 1000.0, "RUB", Wallet.CASH, R.drawable.wallet),
+            Wallet(1, "Tinkoff",32100.0, "USD", Wallet.BANK_CARD, R.drawable.card),
+            Wallet(2, "Bank", 456321.0, "EUR", Wallet.BANK_ACCOUNT, R.drawable.bank)
+    )
 
     val targets = listOf(
-            MoneyTransactionTarget(0, "JOB", MoneyTransaction.INCOME),
-            MoneyTransactionTarget(1, "Freelance", MoneyTransaction.INCOME),
-            MoneyTransactionTarget(2, "Tutoring", MoneyTransaction.INCOME),
-            MoneyTransactionTarget(3, "Clothes", MoneyTransaction.EXPENSE),
-            MoneyTransactionTarget(4, "Auto", MoneyTransaction.EXPENSE),
-            MoneyTransactionTarget(5, "Medicine", MoneyTransaction.EXPENSE),
-            MoneyTransactionTarget(6, "House", MoneyTransaction.EXPENSE),
-            MoneyTransactionTarget(7, "Weekend", MoneyTransaction.EXPENSE),
-            MoneyTransactionTarget(8, "Food", MoneyTransaction.EXPENSE),
-            MoneyTransactionTarget(9, "Gifts", MoneyTransaction.EXPENSE),
-            MoneyTransactionTarget(10, "Travelling", MoneyTransaction.EXPENSE)
+            MoneyTransactionTarget(0, "Job", MoneyTransaction.INCOME, R.drawable.job),
+            MoneyTransactionTarget(1, "Freelance", MoneyTransaction.INCOME, R.drawable.coins),
+            MoneyTransactionTarget(2, "Clothes", MoneyTransaction.EXPENSE, R.drawable.clothes),
+            MoneyTransactionTarget(3, "Car", MoneyTransaction.EXPENSE, R.drawable.car),
+            MoneyTransactionTarget(4, "Medicine", MoneyTransaction.EXPENSE, R.drawable.medicine),
+            MoneyTransactionTarget(5, "House", MoneyTransaction.EXPENSE, R.drawable.home),
+            MoneyTransactionTarget(6, "Travelling", MoneyTransaction.EXPENSE, R.drawable.travel),
+            MoneyTransactionTarget(7, "Food", MoneyTransaction.EXPENSE, R.drawable.product),
+            MoneyTransactionTarget(8, "Phone", MoneyTransaction.EXPENSE, R.drawable.phone)
+
     )
     val transactions = mutableListOf(
             MoneyTransaction(0, 500.0, "RUB", Date(), 0, targets[0],

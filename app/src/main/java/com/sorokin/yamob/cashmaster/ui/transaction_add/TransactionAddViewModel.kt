@@ -3,6 +3,7 @@ package com.sorokin.yamob.cashmaster.ui.transaction_add
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.content.res.Resources
+import com.sorokin.yamob.cashmaster.data.entity.MockData
 import com.sorokin.yamob.cashmaster.data.entity.MoneyTransaction
 import com.sorokin.yamob.cashmaster.data.entity.MoneyTransactionTarget
 import com.sorokin.yamob.cashmaster.data.entity.Wallet
@@ -10,8 +11,7 @@ import com.sorokin.yamob.cashmaster.ui.base.BaseFragmentViewModel
 import com.sorokin.yamob.cashmaster.util.mutableLiveDataWithVal
 import javax.inject.Inject
 
-class TransactionAddViewModel @Inject constructor(resources: Resources,
-                                                  private val walletRepository: WalletRepository
+class TransactionAddViewModel @Inject constructor(resources: Resources
 ) : BaseFragmentViewModel(resources) {
     override val bottomNavigationIsVisible = mutableLiveDataWithVal(false)
     override val fabIsVisible = mutableLiveDataWithVal(false)
@@ -23,21 +23,23 @@ class TransactionAddViewModel @Inject constructor(resources: Resources,
     val targetFrom = MutableLiveData<MoneyTransactionTarget>()
     val targetTo = MutableLiveData<MoneyTransactionTarget>()
 
+    val currencies = mutableLiveDataWithVal(MockData.currencies)
+
 
     fun setTransactionType(tt: Int){
         transactionType.value = tt
     }
     fun setWalletFromId(id: Int){
-        walletFrom.value = Wallet(1, "Cash", 1000.0, "RUB", Wallet.CASH)
+        walletFrom.value = MockData.wallets.first { it.id == id }
     }
     fun setWalletToId(id: Int){
-        walletTo.value = Wallet(2, "Sberbank", 1000.0, "RUB", Wallet.BANK_CARD)
+        walletTo.value = MockData.wallets.first { it.id == id }
     }
     fun setTargetToId(id: Int){
-        targetTo.value = MoneyTransactionTarget(1, "Car", MoneyTransaction.EXPENSE)
+        targetTo.value = MockData.targets.first { it.id == id }
     }
     fun setTargetFromId(id: Int){
-        targetFrom.value = MoneyTransactionTarget(2, "Job", MoneyTransaction.INCOME)
+        targetFrom.value = MockData.targets.first { it.id == id }
     }
 
 }

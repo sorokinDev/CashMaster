@@ -4,7 +4,7 @@
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="nav_header_desc" translatable="false">Navigation header</string>
-    <string name="fragment_home_title">Home</string>
+    <string name="fragment_home_title">Transactions</string>
     <string name="fragment_settings_title">Settings</string>
     <string name="balance">Balance</string>
     <string name="mock_username">Yandex</string>
@@ -12,7 +12,7 @@
     <string name="main_currency_hint">Main currency</string>
     <string name="developer" translatable="false">\@sorokinDev</string>
     <string name="nav_settings">Settings</string>
-    <string name="nav_home">Home</string>
+    <string name="nav_new_trans">Add</string>
     <string name="this_button_will_work">This button will work soon</string>
     <string name="nav_about">About</string>
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium dignissim vestibulum. Praesent congue odio sit amet nunc efficitur sagittis. Suspendisse ultricies eu arcu id lobortis. Fusce magna tortor, bibendum sit amet nunc sed, volutpat interdum dolor. Aliquam purus lacus, congue non nisl a, molestie commodo augue. Proin facilisis maximus lectus, quis rutrum lorem semper ac. Nam tellus dui, malesuada sed lectus in, rutrum posuere nibh. Praesent volutpat nec augue ac imperdiet. Nullam non sem varius justo interdum sodales. Sed sagittis diam odio, at scelerisque orci congue sit amet. Ut mattis neque ac elit condimentum efficitur. Morbi consectetur nulla est. Curabitur mollis ullamcorper elit et semper. Nullam mattis sed metus non luctus.
@@ -32,5 +32,7 @@ Cras congue iaculis leo vel gravida. Integer sed scelerisque felis. Donec laoree
     <string name="hint_from">From</string>
     <string name="hint_to">To</string>
     <string name="btn_confirm">Confirm</string>
-    <string name="nav_new_trans">Add</string>
+    <string name="nav_transactions">Transactions</string>
+    <string name="transaction_added">Transaction added!</string>
+    <string name="error_invalid_number">Invalid sum value</string>
 </resources>

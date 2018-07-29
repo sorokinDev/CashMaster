@@ -1,5 +1,6 @@
 package com.sorokin.yamob.cashmaster.ui.transaction_new.delegate_adapter
 
+import android.annotation.SuppressLint
 import android.view.DragEvent
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -9,7 +10,8 @@ import com.example.delegateadapter.delegate.diff.IComparableItem
 import com.sorokin.yamob.cashmaster.R
 import com.sorokin.yamob.cashmaster.data.entity.MoneyTransaction
 import com.sorokin.yamob.cashmaster.data.entity.Wallet
-import com.sorokin.yamob.cashmaster.ui.transaction_new.HomeFragmentDirections
+import com.sorokin.yamob.cashmaster.ui.transaction_new.TransactionNewFragmentDirections
+
 import kotlinx.android.synthetic.main.item_wallet.*
 import timber.log.Timber
 import java.text.DecimalFormat
@@ -30,17 +32,19 @@ class WalletDelegateAdapter : KDelegateAdapter<WalletItem>() {
 
     override fun isForViewType(items: MutableList<*>, pos: Int): Boolean = items[pos] is WalletItem
 
+    @SuppressLint("SetTextI18n")
     override fun onBind(item: WalletItem, viewHolder: KViewHolder) = with(viewHolder) {
         itemView.tag = item
         tv_wallet_title.text = item.wallet.name
         // TODO: REFACTOR Number formatter, Currency symbol
-        tv_wallet_balance.text = "${numberFormatter.format(item.wallet.money.toInt()).replace(',', '.')} ${Currency.getInstance(item.wallet.currency).symbol}"
-        iv_wallet_icon.setImageResource(when(item.wallet.type){
-            Wallet.CASH -> R.drawable.wallet_flat
-            Wallet.BANK_CARD -> R.drawable.creditcard_flat
-            Wallet.BANK_ACCOUNT -> R.drawable.bank_flat
-            else -> R.drawable.wallet_flat
-        })
+        tv_wallet_balance.text = numberFormatter.format(item.wallet.money.toInt()).replace(',', ' ') +
+                when(item.wallet.currency){
+                    "RUB" -> "\u20BD"
+                    "USD" -> "$"
+                    "EUR" -> "€"
+                    else -> ""
+                }
+        viewHolder.iv_wallet_icon.setImageResource(item.wallet.drawable)
         itemView.setOnDragListener { v, dragEvent ->
             val selectedView = dragEvent.localState as View
 
@@ -59,7 +63,7 @@ class WalletDelegateAdapter : KDelegateAdapter<WalletItem>() {
                     if(v.tag is WalletItem){
                         val targetItem = selectedView.tag as TargetItem
                         val walItem = v.tag as WalletItem
-                        val nav_act = HomeFragmentDirections.NavActionAddTransaction()
+                        val nav_act = TransactionNewFragmentDirections.NavActionAddTransaction()
                         nav_act.setTransactionType(targetItem.target.transactionType)
                         if(targetItem.target.transactionType == MoneyTransaction.INCOME){
                             nav_act.setWalletTo(walItem.wallet.id)
