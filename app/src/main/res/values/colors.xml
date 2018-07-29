@@ -5,7 +5,9 @@
     <!--<color name="colorAccent">#FF4081</color>-->
 <!--</resources>-->
 <resources>
-    <color name="colorPrimary">#B00020</color>
-    <color name="colorPrimaryDark">#A00000</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#00695c</color>
+    <color name="colorPrimaryDark">#004d40</color>
+    <!--<color name="colorPrimary">#B00020</color>
+    <color name="colorPrimaryDark">#A00000</color>-->
+    <color name="colorAccent">#B00020</color>
 </resources>

@@ -83,11 +83,9 @@ class CustomRadioGroup: RadioGroup{
                 if(isChecked){
                     checkedItem = idx
                     buttonView.typeface = Typeface.DEFAULT_BOLD
-                    rb.setTextSize(TypedValue.COMPLEX_UNIT_SP, (rb.textSize.toInt().pxToSp(context) + 2).toFloat())
                     onSelectedItemChanged(idx)
                 }else{
                     buttonView.typeface = Typeface.DEFAULT
-                    rb.setTextSize(TypedValue.COMPLEX_UNIT_SP, rb.textSize.toInt().pxToSp(context).toFloat())
                 }
             }
 

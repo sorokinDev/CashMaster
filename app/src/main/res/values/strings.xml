@@ -28,4 +28,5 @@ Cras congue iaculis leo vel gravida. Integer sed scelerisque felis. Donec laoree
     <string name="expense">Expense</string>
     <string name="category">Category</string>
     <string name="hint_money">Transaction sum</string>
+    <string name="nav_transaction_add">Add transaction</string>
 </resources>

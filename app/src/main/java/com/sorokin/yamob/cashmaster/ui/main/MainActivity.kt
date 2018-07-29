@@ -59,6 +59,10 @@ class MainActivity : BaseActivity<MainViewModel>() {
             if(it) floatingActionButton.show()
             else floatingActionButton.hide()
         }
+
+        sharedViewModel.bottomNavigationIsVisible.observe(this){
+            navigation.visibility = if(it) View.VISIBLE else View.GONE
+        }
     }
 
     fun initNav(){

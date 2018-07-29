@@ -6,7 +6,7 @@ import com.sorokin.yamob.cashmaster.data.entity.Wallet
 import javax.inject.Inject
 
 class WalletRepository @Inject constructor(){
-
+/*
     //region EXCHANGE
     fun exchangeMoney(amount: Double, sourceCurrency: String, destinationCurrency: String): Double {
         val exc = MockData.exchanges.firstOrNull {
@@ -55,11 +55,11 @@ class WalletRepository @Inject constructor(){
     //endregion
 
     //region WALLET
-    fun getWallet() = MockData.wallet
+    fun getWallet() = MockData.wallets
     fun getWalletInCurrency(currency: String) =
             Wallet(
                 exchangeMoney(MockData.wallet.money, MockData.wallet.currency, currency),
                 currency
             )
-    //endregion
+    //endregion*/
 }

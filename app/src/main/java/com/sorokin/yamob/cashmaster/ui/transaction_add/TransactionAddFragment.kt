@@ -33,7 +33,7 @@ class TransactionAddFragment : BaseActivityFragment<TransactionAddViewModel>() {
         }
 
         rg_trans_account.onSelectedItemChanged = {
-            Timber.i("Account clicked: ${viewModel.accounts.value?.get(it)}")
+            Timber.i("Wallet clicked: ${viewModel.accounts.value?.get(it)}")
         }
         viewModel.accounts.observe(this){
             rg_trans_account.setItems(it)

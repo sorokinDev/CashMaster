@@ -3,5 +3,6 @@
     <declare-styleable name="CustomRadioGroup">
         <attr name="crg_rb_textColor" format="reference" />
         <attr name="crg_rb_textSize" format="dimension" />
+        <attr name="crg_rb_textSize_selected" format="dimension" />
     </declare-styleable>
 </resources>

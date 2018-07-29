@@ -19,6 +19,7 @@ class TextDelegateAdapter : KDelegateAdapter<TextItem>() {
     override fun isForViewType(items: MutableList<*>, pos: Int): Boolean = items[pos] is TextItem
 
     override fun onBind(item: TextItem, viewHolder: KViewHolder) = with(viewHolder) {
+        itemView.tag = item
         tv_title.text = item.title
     }
 

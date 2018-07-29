@@ -8,9 +8,6 @@ import android.util.DisplayMetrics
 import android.util.TypedValue
 
 
-
-
-
 fun <T> LiveData<T>.observe(owner: LifecycleOwner, notNull: (data : T) -> Unit,
                             isNull: () -> Unit = { Timber.d("Observer: Live data is null") }){
     this.observe(owner, android.arch.lifecycle.Observer {

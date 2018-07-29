@@ -14,6 +14,7 @@ class SharedViewModel @Inject constructor(
 ): ViewModel() {
     val toolbarIsVisible = mutableLiveDataWithVal(true)
     val fabIsVisible = mutableLiveDataWithVal(false)
+    val bottomNavigationIsVisible = mutableLiveDataWithVal(false)
 
     fun setToolbarIsVisible(vis: Boolean){
         toolbarIsVisible.value = vis
@@ -21,6 +22,10 @@ class SharedViewModel @Inject constructor(
 
     fun setFabIsVisible(vis: Boolean){
         fabIsVisible.value = vis
+    }
+
+    fun setBottomNavigationIsVisible(vis: Boolean) {
+        bottomNavigationIsVisible.value = vis
     }
 
 

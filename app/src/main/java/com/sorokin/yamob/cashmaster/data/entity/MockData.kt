@@ -1,6 +1,6 @@
 package com.sorokin.yamob.cashmaster.data.entity
 
-import android.icu.util.Currency
+import com.sorokin.yamob.cashmaster.util.mutableLiveDataWithVal
 import java.util.*
 
 object MockData{
@@ -21,6 +21,10 @@ object MockData{
             MoneyTransaction(400.0, "RUB", Date(), MoneyTransaction.Type.EXPENSE)
     )
 
-    val wallet = Wallet(1100.0, "RUB")
+    val wallets = mutableLiveDataWithVal(listOf(
+            Wallet(0, "Cash", 1000.0, "RUB", Wallet.Type.CASH),
+            Wallet(1, "Tinkoff",32100.0, "USD", Wallet.Type.BANK_CARD),
+            Wallet(2, "Sberbank", 54200.0, "RUB", Wallet.Type.BANK_CARD),
+            Wallet(3, "Swiss bank", 456321.0, "EUR", Wallet.Type.BANK_ACCOUNT)))
 
 }

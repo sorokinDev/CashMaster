@@ -10,7 +10,8 @@ import javax.inject.Inject
 class TransactionAddViewModel @Inject constructor(resources: Resources,
                                                   private val walletRepository: WalletRepository
 ) : BaseFragmentViewModel(resources) {
-    override val fabIsVisible = mutableLiveDataWithVal(true)
+    override val bottomNavigationIsVisible = mutableLiveDataWithVal(false)
+    override val fabIsVisible = mutableLiveDataWithVal(false)
     override val toolbarIsVisible: LiveData<Boolean> = mutableLiveDataWithVal(true)
 
     val transactionTypes = mutableLiveDataWithVal(listOf("Expense", "Income"))

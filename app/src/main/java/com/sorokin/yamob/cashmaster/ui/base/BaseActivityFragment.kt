@@ -22,6 +22,7 @@ abstract class BaseActivityFragment<T: BaseFragmentViewModel>: BaseFragment<T>()
 
         viewModel.toolbarIsVisible.observe(this, { sharedViewModel.setToolbarIsVisible(it) })
         viewModel.fabIsVisible.observe(this, { sharedViewModel.setFabIsVisible(it) })
+        viewModel.bottomNavigationIsVisible.observe(this, { sharedViewModel.setBottomNavigationIsVisible(it) })
 
     }
 
