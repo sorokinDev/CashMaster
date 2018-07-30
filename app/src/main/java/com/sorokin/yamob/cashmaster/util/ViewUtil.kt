@@ -6,6 +6,8 @@ import android.content.Context
 import timber.log.Timber
 import android.util.DisplayMetrics
 import android.util.TypedValue
+import com.sorokin.yamob.cashmaster.data.entity.MockData
+import java.text.DecimalFormat
 
 
 fun <T> LiveData<T>.observe(owner: LifecycleOwner, notNull: (data : T) -> Unit,
@@ -35,4 +37,12 @@ fun Int.spToPx(context: Context): Int {
 
 fun Int.pxToSp(context: Context): Int {
     return (this / context.resources.getDisplayMetrics().scaledDensity).toInt()
+}
+
+fun Int.asMoney(): String{
+    return DecimalFormat("#,###").format(this).replace(',', ' ')
+}
+
+fun Int.asMoneyWithCur(cur: String): String{
+    return this.asMoney() + " " + MockData.currencySigns[cur]
 }

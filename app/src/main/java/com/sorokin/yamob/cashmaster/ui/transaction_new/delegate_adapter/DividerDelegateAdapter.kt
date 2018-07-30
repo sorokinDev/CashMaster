@@ -4,7 +4,7 @@ import com.example.delegateadapter.delegate.KDelegateAdapter
 import com.example.delegateadapter.delegate.diff.IComparableItem
 import com.sorokin.yamob.cashmaster.R
 
-class Divider(): IComparableItem{
+class DividerItem(): IComparableItem{
 
     override fun id(): Any = 0
 
@@ -12,12 +12,12 @@ class Divider(): IComparableItem{
 
 }
 
-class DividerDelegateAdapter : KDelegateAdapter<Divider>() {
+class DividerDelegateAdapter : KDelegateAdapter<DividerItem>() {
     override fun getLayoutId(): Int = R.layout.item_line_divider
 
-    override fun isForViewType(items: MutableList<*>, pos: Int): Boolean = items[pos] is Divider
+    override fun isForViewType(items: MutableList<*>, pos: Int): Boolean = items[pos] is DividerItem
 
-    override fun onBind(item: Divider, viewHolder: KViewHolder) = with(viewHolder) {
+    override fun onBind(item: DividerItem, viewHolder: KViewHolder) = with(viewHolder) {
         itemView.tag = item
     }
 

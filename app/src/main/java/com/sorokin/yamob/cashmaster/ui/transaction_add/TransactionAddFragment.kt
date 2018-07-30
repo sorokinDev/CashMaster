@@ -67,7 +67,7 @@ class TransactionAddFragment : BaseActivityFragment<TransactionAddViewModel>() {
         viewModel.currencies.observe(this){
             currencyAdapter.addAll(it)
             currencyAdapter.notifyDataSetChanged()
-            spinner_currencies.setSelection(it.indexOfFirst { cur -> cur == (viewModel.walletTo.value?.currency ?: viewModel.walletTo.value?.currency ?: "RUB") })
+            spinner_currencies.setSelection(it.indexOfFirst { cur -> cur == (viewModel.walletTo.value?.currency ?: viewModel.walletFrom.value?.currency ?: "RUB") })
         }
 
         btn_confirm.setOnClickListener{

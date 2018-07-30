@@ -23,4 +23,5 @@
     <string name="category">Категория</string>
     <string name="income">Поступление</string>
     <string name="expense">Оплата</string>
+    <string name="cash">Наличные</string>
 </resources>

@@ -15,6 +15,7 @@ import android.util.TypedValue
 import com.sorokin.yamob.cashmaster.util.pxToSp
 import com.sorokin.yamob.cashmaster.util.spToPx
 import kotlinx.android.parcel.Parcelize
+import timber.log.Timber
 
 
 class CustomRadioGroup: RadioGroup{
@@ -39,8 +40,9 @@ class CustomRadioGroup: RadioGroup{
     var mainItems = listOf<String>()
     var additionalItems = listOf<String>()
     var itemKeys = hashMapOf<String, Int>()
+    var radioButtons = mutableListOf<RadioButton>()
 
-    lateinit var onSelectedItemChanged: (Int) -> Unit
+    var onSelectedItemChanged: (Int) -> Unit = { }
 
     private lateinit var attr: TypedArray
 
@@ -91,6 +93,7 @@ class CustomRadioGroup: RadioGroup{
 
             addView(rb)
             rb.isChecked = idx == checkedItem
+            radioButtons.add(rb)
         }
 
         invalidate()

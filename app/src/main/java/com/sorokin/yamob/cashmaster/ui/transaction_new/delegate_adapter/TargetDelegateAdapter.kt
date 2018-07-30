@@ -10,6 +10,7 @@ import com.example.delegateadapter.delegate.diff.IComparableItem
 import com.sorokin.yamob.cashmaster.R
 import com.sorokin.yamob.cashmaster.data.entity.MoneyTransaction
 import com.sorokin.yamob.cashmaster.data.entity.MoneyTransactionTarget
+import com.sorokin.yamob.cashmaster.util.asMoneyWithCur
 import kotlinx.android.synthetic.main.item_category.*
 import kotlinx.android.synthetic.main.item_wallet.*
 import timber.log.Timber
@@ -17,36 +18,29 @@ import java.text.DecimalFormat
 
 
 class TargetItem(var target: MoneyTransactionTarget): IComparableItem {
-
     override fun id(): Any = target.id
-
     override fun content(): Any = target.id.toString() + target.name
-
 }
 
 class TargetDelegateAdapter : KDelegateAdapter<TargetItem>() {
-    val numberFormatter = DecimalFormat("#,###")
 
     override fun getLayoutId(): Int = R.layout.item_category
-
     override fun isForViewType(items: MutableList<*>, pos: Int): Boolean = items[pos] is TargetItem
 
     override fun onBind(item: TargetItem, viewHolder: KViewHolder) = with(viewHolder) {
-        Timber.i("BIND: ${item.target.name}")
         itemView.tag = item
-        viewHolder.tv_target_title.text = item.target.name
-        viewHolder.tv_target_balance.text =
-                numberFormatter.format(500 + (10000 * Math.random()).toInt()).replace(',', ' ') + "\u20BD"
-        viewHolder.iv_target_icon.setImageResource(item.target.drawable)
 
-        if(item.target.transactionType == MoneyTransaction.EXPENSE){
-            tv_target_balance.setTextColor(ResourcesCompat.getColor(itemView.resources, R.color.colorExpense, null))
-        }else{
-            tv_target_balance.setTextColor(ResourcesCompat.getColor(itemView.resources, R.color.colorIncome , null))
+        tv_target_title.text = item.target.name
+        tv_target_balance.text = (500 + (10000 * Math.random()).toInt()).asMoneyWithCur("RUB")
+        iv_target_icon.setImageResource(item.target.drawable)
+
+        val colorId =   when(item.target.transactionType){
+            MoneyTransaction.EXPENSE -> R.color.colorExpense
+            else -> R.color.colorIncome
         }
+        tv_target_balance.setTextColor(ResourcesCompat.getColor(itemView.resources, colorId,null))
 
         itemView.setOnLongClickListener {
-            Timber.i("ACTION LONG CLICK")
             val clipData = ClipData.newPlainText("id", item.target.id.toString())
             val shadowBuilder = View.DragShadowBuilder(itemView)
 
@@ -70,17 +64,12 @@ class TargetDelegateAdapter : KDelegateAdapter<TargetItem>() {
                         return@setOnDragListener false
                     }
                 }
-                DragEvent.ACTION_DRAG_LOCATION -> {
-
-                }
                 DragEvent.ACTION_DROP -> {
-
                     return@setOnDragListener false
                 }
                 DragEvent.ACTION_DRAG_ENDED -> {
                     selectedView.post { selectedView.alpha = 1f }
                 }
-                else -> { }
             }
             return@setOnDragListener true
         }

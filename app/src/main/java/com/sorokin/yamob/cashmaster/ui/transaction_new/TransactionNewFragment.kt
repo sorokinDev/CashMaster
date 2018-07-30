@@ -39,12 +39,12 @@ class TransactionNewFragment : BaseActivityFragment<TransactionNewViewModel>() {
         viewModel.targets.value?.filter { it.transactionType == MoneyTransaction.INCOME }?.forEachIndexed { _, tp ->
             data.add(TargetItem(tp))
         }
-        data.add(Divider())
+        data.add(DividerItem())
 
         viewModel.wallets.value?.forEachIndexed { _, tp ->
             data.add(WalletItem(tp))
         }
-        data.add(Divider())
+        data.add(DividerItem())
 
 
         viewModel.targets.value?.filter { it.transactionType == MoneyTransaction.EXPENSE }?.forEachIndexed { _, tp ->
@@ -56,7 +56,6 @@ class TransactionNewFragment : BaseActivityFragment<TransactionNewViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         viewModel.targets.observe(this){
             updateDataInRv()
@@ -70,7 +69,7 @@ class TransactionNewFragment : BaseActivityFragment<TransactionNewViewModel>() {
         layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup(){
             override fun getSpanSize(position: Int): Int {
                 return when(mainRVAdapter.getItem(position)){
-                    is Divider -> layoutManager.spanCount
+                    is DividerItem -> layoutManager.spanCount
                     else -> 1
                 }
             }
@@ -83,9 +82,7 @@ class TransactionNewFragment : BaseActivityFragment<TransactionNewViewModel>() {
 
             when (dragEvent.action) {
                 DragEvent.ACTION_DRAG_STARTED -> {
-                    Timber.i("RECYCLER DRAG STARTED")
                     if(selectedView.tag is TargetItem){
-                        Timber.i("Smooth scrolling")
                         rv_main.isLayoutFrozen = false
                         rv_main.smoothScrollToPosition(0)
                         return@setOnDragListener false

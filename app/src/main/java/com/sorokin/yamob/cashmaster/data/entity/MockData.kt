@@ -5,7 +5,7 @@ import com.sorokin.yamob.cashmaster.util.mutableLiveDataWithVal
 import java.util.*
 
 object MockData{
-    val currencies = listOf("RUB", "USD", "EUR")
+    val currencies = listOf("RUB", "USD")
     val exchanges = listOf(
             MoneyExchange("RUB", "USD", 1 / 60.0),
             MoneyExchange("RUB", "EUR", 1 / 80.0),
@@ -16,8 +16,8 @@ object MockData{
     )
     val wallets = listOf(
             Wallet(0, "Cash", 1000.0, "RUB", Wallet.CASH, R.drawable.wallet),
-            Wallet(1, "Tinkoff",32100.0, "USD", Wallet.BANK_CARD, R.drawable.card),
-            Wallet(2, "Bank", 456321.0, "EUR", Wallet.BANK_ACCOUNT, R.drawable.bank)
+            Wallet(1, "Card",32100.0, "RUB", Wallet.BANK_CARD, R.drawable.card),
+            Wallet(2, "Bank", 456321.0, "RUB", Wallet.BANK_ACCOUNT, R.drawable.bank)
     )
 
     val targets = listOf(
@@ -34,6 +34,22 @@ object MockData{
     )
     val transactions = mutableListOf(
             MoneyTransaction(0, 500.0, "RUB", Date(), 0, targets[0],
-                    MoneyTransaction.INCOME,0, wallets[0])
+                    MoneyTransaction.INCOME,0, wallets[0]),
+            MoneyTransaction(1, 700.0, "RUB", Date(), 7, targets[7],
+                    MoneyTransaction.EXPENSE,0, wallets[0]),
+            MoneyTransaction(2, 600.0, "RUB", Date(), 1, targets[1],
+                    MoneyTransaction.INCOME,0, wallets[0]),
+            MoneyTransaction(3, 1000.0, "RUB", Date(), 0, targets[0],
+                    MoneyTransaction.INCOME,0, wallets[0]),
+            MoneyTransaction(4, 100.0, "RUB", Date(), 4, targets[4],
+                    MoneyTransaction.EXPENSE,0, wallets[0]),
+            MoneyTransaction(5, 3000.0, "RUB", Date(), 3, targets[3],
+                    MoneyTransaction.EXPENSE,0, wallets[0]),
+            MoneyTransaction(6, 400.0, "RUB", Date(), 5, targets[5],
+                    MoneyTransaction.EXPENSE,0, wallets[0]),
+            MoneyTransaction(6, 500.0, "RUB", Date(), 6, targets[6],
+                    MoneyTransaction.EXPENSE,0, wallets[0])
     )
+    val currencySigns = mapOf(Pair("RUB", "\u20BD"), Pair("USD", "$"), Pair("EUR", "€"))
+
 }
