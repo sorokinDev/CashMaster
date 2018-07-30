@@ -10,6 +10,7 @@ import javax.inject.Inject
 
 
 class AboutViewModel @Inject constructor(resources: Resources) : BaseFragmentViewModel(resources) {
+    override val bottomNavigationIsVisible = mutableLiveDataWithVal(false)
     override val fabIsVisible = mutableLiveDataWithVal(false)
     override val toolbarIsVisible: LiveData<Boolean> = mutableLiveDataWithVal(true)
 

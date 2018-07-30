@@ -35,6 +35,10 @@ android {
     }
 }
 
+androidExtensions {
+    experimental = true
+}
+
 ext {
     appcompat_version = "27.1.1"
     room_version = "1.1.1"
@@ -56,6 +60,7 @@ dependencies {
 
     implementation "android.arch.navigation:navigation-fragment-ktx:1.0.0-alpha04"
     implementation "android.arch.navigation:navigation-ui-ktx:1.0.0-alpha04"
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
     androidTestImplementation "android.arch.navigation:navigation-testing-ktx:1.0.0-alpha04"
 
     // Room
@@ -79,6 +84,12 @@ dependencies {
 
     // Timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    // Delegate adapters
+    implementation 'com.github.liverm0r:delegateadapters:v2.0'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

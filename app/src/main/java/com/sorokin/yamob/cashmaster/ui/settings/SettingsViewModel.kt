@@ -9,6 +9,7 @@ import com.sorokin.yamob.cashmaster.util.mutableLiveDataWithVal
 import javax.inject.Inject
 
 class SettingsViewModel @Inject constructor(resources: Resources) : BaseFragmentViewModel(resources) {
+    override val bottomNavigationIsVisible = mutableLiveDataWithVal(true)
     override val fabIsVisible = mutableLiveDataWithVal(false)
     override val toolbarIsVisible: LiveData<Boolean> = mutableLiveDataWithVal(true)
 }

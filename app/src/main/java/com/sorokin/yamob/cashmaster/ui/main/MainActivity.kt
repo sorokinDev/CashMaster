@@ -36,7 +36,7 @@ class MainActivity : BaseActivity<MainViewModel>() {
         initNav()
 
         if(savedInstanceState == null){
-            navigation.selectedItemId = R.id.nav_tab_home
+            navigation.selectedItemId = R.id.nav_tab_transactions
         }
     }
 
@@ -58,6 +58,10 @@ class MainActivity : BaseActivity<MainViewModel>() {
         sharedViewModel.fabIsVisible.observe(this) {
             if(it) floatingActionButton.show()
             else floatingActionButton.hide()
+        }
+
+        sharedViewModel.bottomNavigationIsVisible.observe(this){
+            navigation.visibility = if(it) View.VISIBLE else View.GONE
         }
     }
 

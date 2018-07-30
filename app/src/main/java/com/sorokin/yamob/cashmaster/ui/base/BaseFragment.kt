@@ -21,6 +21,7 @@ abstract class BaseFragment<T: ViewModel>: DaggerFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         viewModel = provideViewModel()
     }
 
