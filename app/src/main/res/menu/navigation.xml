@@ -2,13 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/nav_home"
-        android:icon="@drawable/ic_home_24_b"
-        android:title="@string/nav_home" />
+        android:id="@+id/nav_tab_transactions"
+        android:icon="@drawable/transaction"
+        android:title="@string/nav_transactions" />
+
+    <item
+        android:id="@+id/nav_new_trans"
+        android:icon="@drawable/more"
+        android:title="@string/nav_new_trans" />
 
     <item
         android:id="@+id/nav_settings"
-        android:icon="@drawable/ic_settings_24_b"
+        android:icon="@drawable/settings"
         android:title="@string/nav_settings" />
 
 </menu>

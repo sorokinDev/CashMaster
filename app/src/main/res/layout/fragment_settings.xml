@@ -39,7 +39,7 @@
             android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorAccent"
             android:layout_below="@id/tv_email"/>
 
         <TextView
@@ -66,17 +66,18 @@
             android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorAccent"
             android:layout_below="@id/tv_major_currency"/>
 
         <Button
             android:id="@+id/btn_to_about"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/about_app"
+            android:text="@string/nav_about"
             android:layout_marginTop="16dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/div_currency"
+            android:textColor="@color/colorAccent"
             style="@style/Widget.AppCompat.Button.Borderless.Colored" />
 
     </RelativeLayout>

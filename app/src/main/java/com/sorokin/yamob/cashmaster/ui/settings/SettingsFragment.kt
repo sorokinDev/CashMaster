@@ -2,23 +2,20 @@ package com.sorokin.yamob.cashmaster.ui.settings
 
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 
 import com.sorokin.yamob.cashmaster.R
 import com.sorokin.yamob.cashmaster.ui.base.BaseActivityFragment
-import com.sorokin.yamob.cashmaster.util.Screens
 import kotlinx.android.synthetic.main.fragment_settings.*
-import javax.inject.Inject
 
-class SettingsFragment @Inject constructor(): BaseActivityFragment<SettingsViewModel>() {
+class SettingsFragment : BaseActivityFragment<SettingsViewModel>() {
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        btn_to_about.setOnClickListener {
-            viewModel.router.navigateTo(Screens.ABOUT)
-        }
+        btn_to_about.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.nav_action_settings_to_about, null))
     }
 
     override fun provideViewModel(): SettingsViewModel = getViewModel(viewModelFactory)

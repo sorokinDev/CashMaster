@@ -1,17 +1,22 @@
 package com.sorokin.yamob.cashmaster.data.entity
 
-import android.icu.util.CurrencyAmount
 import java.util.*
 
-
-
 class MoneyTransaction(
-        var amount: Double,
-        var currency: String,
-        var date: Date,
-        var type: MoneyTransaction.Type
+        var id: Int,
+        val amount: Double,
+        val currency: String,
+        val date: Date,
+        val targetId: Int,
+        val target: MoneyTransactionTarget,
+        val type: Int,
+        val walletId: Int,
+        val wallet: Wallet
 ){
-    enum class Type{
-        INCOMING, EXPENSE
+    companion object {
+        val INCOME = 1
+        val EXPENSE = 2
+        val TRANSFER = 3
     }
+
 }
